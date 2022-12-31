@@ -20,6 +20,7 @@ class Game
 		string title;
 		Sprite *bgTitle;
 		TitleStage *titleStage;
+		RenderTexture2D renderTexture;
 		void cleanUp();
 	public:
 		Game(string t, int sw, int sh, int gw, int gh, int fps);

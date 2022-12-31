@@ -16,12 +16,15 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 
 	titleStage = new TitleStage(this);
 
+	renderTexture = LoadRenderTexture(gameWidth, gameHeight);
+
 	SetTargetFPS(fps);
 }
 
 void Game::cleanUp()
 {
 	bgTitle->unload();
+	UnloadRenderTexture(renderTexture);
 }
 
 void Game::run()
@@ -35,6 +38,7 @@ void Game::run()
 			gameEnd = true;
 
 		BeginDrawing();
+		BeginTextureMode(renderTexture);
 
 		switch (state)
 		{
@@ -45,6 +49,9 @@ void Game::run()
 			titleStage->run();
 			break;
 		}
+
+
+		EndTextureMode();
 
 		EndDrawing();
 	}
