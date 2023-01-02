@@ -52,7 +52,11 @@ void Game::run()
 
 
 		EndTextureMode();
+		ClearBackground(BLACK);
 
+		Rectangle srcRect = (Rectangle){ 0.0, 0.0, static_cast<float>(renderTexture.texture.width), static_cast<float>(-renderTexture.texture.height) };
+		Rectangle dstRect = (Rectangle) { static_cast<float>((screenWidth / 2.0) - ( (screenWidth * ((float)gameHeight / (float)gameWidth)) / 2.0)), 0.0, static_cast<float>(screenWidth * ((float)gameHeight / (float)gameWidth)), static_cast<float>(screenHeight) };
+		DrawTexturePro(renderTexture.texture, srcRect , dstRect, (Vector2){ 0.0, 0.0 }, 0.0, WHITE);  
 		EndDrawing();
 	}
 

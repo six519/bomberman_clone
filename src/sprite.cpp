@@ -13,3 +13,8 @@ void Sprite::unload()
 {
 	UnloadTexture(texture);
 }
+
+Texture2D Sprite::getTexture()
+{
+	return texture;
+}

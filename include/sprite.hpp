@@ -16,6 +16,7 @@ class Sprite
 		int y;
 		Sprite(string imagePath);
 		void unload();
+		Texture2D getTexture();
 };
 
 #endif

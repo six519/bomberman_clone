@@ -19,5 +19,5 @@ void TitleStage::handleKeys()
 
 void TitleStage::draw()
 {
-
+	DrawTexture(game->bgTitle->getTexture(), 0, 0, WHITE);
 }
