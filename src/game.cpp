@@ -11,6 +11,7 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 	state = 0;
 
 	InitWindow(screenWidth, screenHeight, title.c_str());
+	InitAudioDevice();
 
 	titleStage = new TitleStage(this);
 
@@ -23,6 +24,7 @@ void Game::cleanUp()
 {
 	titleStage->cleanUp();
 	UnloadRenderTexture(renderTexture);
+	CloseAudioDevice();
 }
 
 void Game::run()

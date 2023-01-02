@@ -25,12 +25,19 @@ void TitleStage::init()
 	ship = new Sprite("assets/ship_title.png");
 	char1 = new Sprite("assets/char1_title.png");
 	char2 = new Sprite("assets/char2_title.png");
+	title = new Sprite("assets/text_title.png");
+	enter = new Sprite("assets/press_enter_title.png");
+	titleMusic = LoadMusicStream("assets/title.mp3");
 	ship->x = (game->gameWidth / 2) - (ship->getTexture().width / 2);
 	ship->y = -ship->getTexture().height;
 	char1->x = 8;
 	char1->y = -char1->getTexture().height;
 	char2->x = game->gameWidth - (char2->getTexture().width + 35);
 	char2->y = game->gameHeight;
+	title->x = game->gameWidth;
+	title->y = 5;
+	enter->x = (game->gameWidth / 2) - (enter->getTexture().width / 2);
+	enter->y = 150;
 }
 
 void TitleStage::handleKeys()
@@ -44,6 +51,7 @@ void TitleStage::draw()
 	DrawTexture(ship->getTexture(), ship->x, ship->y, WHITE);
 	DrawTexture(char1->getTexture(), char1->x, char1->y, WHITE);
 	DrawTexture(char2->getTexture(), char2->x, char2->y, WHITE);
+	DrawTexture(title->getTexture(), title->x, title->y, WHITE);
 
 	switch (state)
 	{
@@ -61,7 +69,22 @@ void TitleStage::draw()
 			state = 2;
 		}
 		break;
-	
+
+	case 2:
+		if (title->x >= 5)
+		{
+			title->x -= 5;
+		}
+		else
+		{
+			PlayMusicStream(titleMusic);
+			state = 3;
+		}
+		break;
+	case 3:
+		UpdateMusicStream(titleMusic);
+		DrawTexture(enter->getTexture(), enter->x, enter->y, WHITE);
+		break;
 	default:
 		if (ship->y <= 20) 
 		{
@@ -81,4 +104,7 @@ void TitleStage::cleanUp()
 	ship->unload();
 	char1->unload();
 	char2->unload();
+	title->unload();
+	enter->unload();
+	UnloadMusicStream(titleMusic);
 }
