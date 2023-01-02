@@ -12,16 +12,16 @@ class TitleStage;
 class Game
 {
 	private:
-		int screenWidth;
-		int screenHeight;
-		int gameWidth;
-		int gameHeight;
-		int state;
 		string title;
 		TitleStage *titleStage;
 		RenderTexture2D renderTexture;
 		void cleanUp();
 	public:
+		int screenWidth;
+		int screenHeight;
+		int gameWidth;
+		int gameHeight;
+		int state;
 		Game(string t, int sw, int sh, int gw, int gh, int fps);
 		void run();
 };

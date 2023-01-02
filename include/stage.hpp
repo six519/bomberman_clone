@@ -30,6 +30,7 @@ class TitleStage: public Stage {
 		void init();
 	private:
 		Sprite *bgTitle;
+		Sprite *ship;
 	public:
 		void cleanUp();
 };
