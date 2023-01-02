@@ -11,8 +11,6 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 	state = 0;
 
 	InitWindow(screenWidth, screenHeight, title.c_str());
-	
-	bgTitle = new Sprite("assets/bg_title.png");
 
 	titleStage = new TitleStage(this);
 
@@ -23,7 +21,7 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 
 void Game::cleanUp()
 {
-	bgTitle->unload();
+	titleStage->cleanUp();
 	UnloadRenderTexture(renderTexture);
 }
 

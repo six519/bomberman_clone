@@ -22,7 +22,6 @@ class Game
 		RenderTexture2D renderTexture;
 		void cleanUp();
 	public:
-		Sprite *bgTitle;
 		Game(string t, int sw, int sh, int gw, int gh, int fps);
 		void run();
 };

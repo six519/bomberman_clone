@@ -12,10 +12,14 @@ class Stage
 	protected:
 		virtual void handleKeys()=0;
 		virtual void draw()=0;
+		virtual void init()=0;
 		Game *game;
+		int state;
+		bool initialized;
 	public:
 		Stage(Game *gm);
 		void run();
+		virtual void cleanUp()=0;
 };
 
 class TitleStage: public Stage {
@@ -23,6 +27,11 @@ class TitleStage: public Stage {
 	protected:
 		void handleKeys();
 		void draw();
+		void init();
+	private:
+		Sprite *bgTitle;
+	public:
+		void cleanUp();
 };
 
 #endif

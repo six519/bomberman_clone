@@ -10,13 +10,13 @@ class Sprite
 	private:
 		Texture2D texture;
 	public:
-		int width;
-		int height;
 		int x;
 		int y;
 		Sprite(string imagePath);
+		Sprite();
 		void unload();
 		Texture2D getTexture();
+		void setTexture(Texture2D texture);
 };
 
 #endif
