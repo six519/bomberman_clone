@@ -14,7 +14,6 @@ class Game
 	private:
 		string title;
 		TitleStage *titleStage;
-		RenderTexture2D renderTexture;
 		void cleanUp();
 	public:
 		int screenWidth;

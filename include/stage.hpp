@@ -16,8 +16,11 @@ class Stage
 		Game *game;
 		int state;
 		bool initialized;
+		RenderTexture2D renderTexture;
+		int width;
+		int height;
 	public:
-		Stage(Game *gm);
+		Stage(Game *gm, int width, int height);
 		void run();
 		virtual void cleanUp()=0;
 };

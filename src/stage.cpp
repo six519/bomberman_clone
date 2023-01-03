@@ -1,10 +1,13 @@
 #include "stage.hpp"
 
-Stage::Stage(Game *gm)
+Stage::Stage(Game *gm, int width, int height)
 {
 	game = gm;
 	state = 0;
 	initialized = false;
+	width = width;
+	height = height;
+	renderTexture = LoadRenderTexture(width, height);
 };
 
 void Stage::run()
@@ -16,6 +19,11 @@ void Stage::run()
 
 	this->handleKeys();
 	this->draw();
+}
+
+void Stage::cleanUp()
+{
+	UnloadRenderTexture(renderTexture);
 }
 
 
@@ -47,6 +55,9 @@ void TitleStage::handleKeys()
 
 void TitleStage::draw()
 {
+	BeginDrawing();
+	BeginTextureMode(renderTexture);
+
 	bgTitle->draw();
 	ship->draw();
 	char1->draw();
@@ -96,10 +107,20 @@ void TitleStage::draw()
 		}
 		break;
 	}
+
+	EndTextureMode();
+	ClearBackground(BLACK);
+
+	Rectangle srcRect = (Rectangle){ 0.0, 0.0, static_cast<float>(renderTexture.texture.width), static_cast<float>(-renderTexture.texture.height) };
+	Rectangle dstRect = (Rectangle) { static_cast<float>((game->screenWidth / 2.0) - ( (game->screenWidth * ((float)height / (float)width)) / 2.0)), 0.0, static_cast<float>(game->screenWidth * ((float)height / (float)width)), static_cast<float>(game->screenHeight) };
+	DrawTexturePro(renderTexture.texture, srcRect , dstRect, (Vector2){ 0.0, 0.0 }, 0.0, WHITE);  
+	EndDrawing();
+
 }
 
 void TitleStage::cleanUp()
 {
+	Stage::cleanUp();
 	bgTitle->unload();
 	ship->unload();
 	char1->unload();
