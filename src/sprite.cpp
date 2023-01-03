@@ -5,12 +5,28 @@ Sprite::Sprite(string imagePath)
 	texture = LoadTexture(imagePath.c_str());
 	x = 0;
 	y = 0;
+	currentFrame = 0;
+	framesCounter = 0;
+	tileCount = 0;
 }
 
 Sprite::Sprite()
 {
 	x = 0;
 	y = 0;
+	currentFrame = 0;
+	framesCounter = 0;
+	tileCount = 0;
+}
+
+Sprite::Sprite(string imagePath, int tileCount)
+{
+	texture = LoadTexture(imagePath.c_str());
+	x = 0;
+	y = 0;
+	currentFrame = 0;
+	framesCounter = 0;
+	this->tileCount = tileCount;
 }
 
 void Sprite::unload()
