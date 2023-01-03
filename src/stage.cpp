@@ -5,8 +5,8 @@ Stage::Stage(Game *gm, int width, int height)
 	game = gm;
 	state = 0;
 	initialized = false;
-	width = width;
-	height = height;
+	this->width = width;
+	this->height = height;
 	renderTexture = LoadRenderTexture(width, height);
 };
 
@@ -112,7 +112,7 @@ void TitleStage::draw()
 	ClearBackground(BLACK);
 
 	Rectangle srcRect = (Rectangle){ 0.0, 0.0, static_cast<float>(renderTexture.texture.width), static_cast<float>(-renderTexture.texture.height) };
-	Rectangle dstRect = (Rectangle) { static_cast<float>((game->screenWidth / 2.0) - ( (game->screenWidth * ((float)height / (float)width)) / 2.0)), 0.0, static_cast<float>(game->screenWidth * ((float)height / (float)width)), static_cast<float>(game->screenHeight) };
+	Rectangle dstRect = (Rectangle) { static_cast<float>((game->screenWidth / 2.0) - ( (game->screenWidth * ((float)this->height / (float)this->width)) / 2.0)), 0.0, static_cast<float>(game->screenWidth * ((float)this->height / (float)this->width)), static_cast<float>(game->screenHeight) };
 	DrawTexturePro(renderTexture.texture, srcRect , dstRect, (Vector2){ 0.0, 0.0 }, 0.0, WHITE);  
 	EndDrawing();
 
