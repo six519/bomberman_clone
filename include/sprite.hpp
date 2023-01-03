@@ -17,6 +17,7 @@ class Sprite
 		void unload();
 		Texture2D getTexture();
 		void setTexture(Texture2D texture);
+		void draw();
 };
 
 #endif

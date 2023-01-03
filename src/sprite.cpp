@@ -27,3 +27,8 @@ void Sprite::setTexture(Texture2D texture)
 {
 	this->texture = texture;
 }
+
+void Sprite::draw()
+{
+	DrawTexture(texture, x, y, WHITE);
+}

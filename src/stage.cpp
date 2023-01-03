@@ -47,11 +47,11 @@ void TitleStage::handleKeys()
 
 void TitleStage::draw()
 {
-	DrawTexture(bgTitle->getTexture(), 0, 0, WHITE);
-	DrawTexture(ship->getTexture(), ship->x, ship->y, WHITE);
-	DrawTexture(char1->getTexture(), char1->x, char1->y, WHITE);
-	DrawTexture(char2->getTexture(), char2->x, char2->y, WHITE);
-	DrawTexture(title->getTexture(), title->x, title->y, WHITE);
+	bgTitle->draw();
+	ship->draw();
+	char1->draw();
+	char2->draw();
+	title->draw();
 
 	switch (state)
 	{
@@ -83,7 +83,7 @@ void TitleStage::draw()
 		break;
 	case 3:
 		UpdateMusicStream(titleMusic);
-		DrawTexture(enter->getTexture(), enter->x, enter->y, WHITE);
+		enter->draw();
 		break;
 	default:
 		if (ship->y <= 20) 
