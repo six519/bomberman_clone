@@ -1,4 +1,5 @@
 #include "sprite.hpp"
+#include "settings.hpp"
 
 Sprite::Sprite(string imagePath)
 {
@@ -8,6 +9,7 @@ Sprite::Sprite(string imagePath)
 	currentFrame = 0;
 	framesCounter = 0;
 	tileCount = 0;
+	stopped = false;
 }
 
 Sprite::Sprite()
@@ -17,6 +19,7 @@ Sprite::Sprite()
 	currentFrame = 0;
 	framesCounter = 0;
 	tileCount = 0;
+	stopped = false;
 }
 
 Sprite::Sprite(string imagePath, int tileCount)
@@ -27,6 +30,8 @@ Sprite::Sprite(string imagePath, int tileCount)
 	currentFrame = 0;
 	framesCounter = 0;
 	this->tileCount = tileCount;
+	frameRec = (Rectangle){ 0.0, 0.0, (float)texture.width/tileCount, (float)texture.height };
+	stopped = false;
 }
 
 void Sprite::unload()
@@ -47,4 +52,29 @@ void Sprite::setTexture(Texture2D texture)
 void Sprite::draw()
 {
 	DrawTexture(texture, x, y, WHITE);
+}
+
+void Sprite::play()
+{
+	if (tileCount > 0)
+	{
+
+		if (!stopped)
+		{
+			framesCounter++;
+
+			if (framesCounter >= (TARGET_FPS / FRAME_SPEED))
+			{
+				framesCounter = 0;
+				currentFrame++;
+
+				if (currentFrame > (tileCount - 1))
+					currentFrame = 0;
+
+				frameRec.x = (float)currentFrame*(float)texture.width/tileCount;
+			}
+		}
+
+		DrawTextureRec(texture, frameRec, (Vector2){ (float)x,(float)y }, WHITE);
+	}
 }

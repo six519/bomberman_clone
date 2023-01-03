@@ -38,6 +38,7 @@ class TitleStage: public Stage {
 		Sprite *char2;
 		Sprite *title;
 		Sprite *enter;
+		Sprite *bomb;
 		Music titleMusic;
 	public:
 		void cleanUp();

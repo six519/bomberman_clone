@@ -7,6 +7,6 @@
 #define GAME_WIDTH 256
 #define GAME_HEIGHT 224
 #define TARGET_FPS 60
-#define FRAME_SPEED 8
+#define FRAME_SPEED 4
 
 #endif

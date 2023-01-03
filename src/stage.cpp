@@ -36,6 +36,7 @@ void TitleStage::init()
 	title = new Sprite("assets/text_title.png");
 	enter = new Sprite("assets/press_enter_title.png");
 	titleMusic = LoadMusicStream("assets/title.mp3");
+	bomb = new Sprite("assets/bomb.png", 4);
 	ship->x = (game->gameWidth / 2) - (ship->getTexture().width / 2);
 	ship->y = -ship->getTexture().height;
 	char1->x = 8;
@@ -44,7 +45,9 @@ void TitleStage::init()
 	char2->y = game->gameHeight;
 	title->x = game->gameWidth;
 	title->y = 5;
-	enter->x = (game->gameWidth / 2) - (enter->getTexture().width / 2);
+	bomb->x = ((game->gameWidth / 2) - (enter->getTexture().width / 2)) - 12;
+	bomb->y = 150;
+	enter->x = ((game->gameWidth / 2) - (enter->getTexture().width / 2)) + 12;
 	enter->y = 150;
 }
 
@@ -94,6 +97,7 @@ void TitleStage::draw()
 		break;
 	case 3:
 		UpdateMusicStream(titleMusic);
+		bomb->play();
 		enter->draw();
 		break;
 	default:

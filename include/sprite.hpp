@@ -12,6 +12,8 @@ class Sprite
 		int currentFrame;
 		int framesCounter;
 		int tileCount;
+		Rectangle frameRec;
+		bool stopped;
 	public:
 		int x;
 		int y;
@@ -22,6 +24,7 @@ class Sprite
 		Texture2D getTexture();
 		void setTexture(Texture2D texture);
 		void draw();
+		void play();
 };
 
 #endif
