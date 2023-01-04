@@ -2,8 +2,13 @@
 #define _GAME_H_
 #include <string>
 #include <vector>
+#include <map>
 #include "sprite.hpp"
 #include "stage.hpp"
+
+#define CASTLE_TEXTURE_COUNT 59
+#define CASTLE_TEXTURE_PATH "castle/"
+#define CASTLE_FNAME_PREFIX "c"
 
 using namespace std;
 
@@ -15,12 +20,15 @@ class Game
 		string title;
 		TitleStage *titleStage;
 		void cleanUp();
+		void loadTextures(int count, string path, string prefix);
+		void unloadTextures();
 	public:
 		int screenWidth;
 		int screenHeight;
 		int gameWidth;
 		int gameHeight;
 		int state;
+		map<string, Texture2D> textures;
 		Game(string t, int sw, int sh, int gw, int gh, int fps);
 		void run();
 };

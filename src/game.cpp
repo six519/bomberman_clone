@@ -13,6 +13,9 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 	InitWindow(screenWidth, screenHeight, title.c_str());
 	InitAudioDevice();
 
+	//load castle textures
+	loadTextures(CASTLE_TEXTURE_COUNT, CASTLE_TEXTURE_PATH, CASTLE_FNAME_PREFIX);
+
 	titleStage = new TitleStage(this, gameWidth, gameHeight);
 
 	SetTargetFPS(fps);
@@ -21,6 +24,7 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 void Game::cleanUp()
 {
 	titleStage->cleanUp();
+	unloadTextures();
 	CloseAudioDevice();
 }
 
@@ -47,4 +51,23 @@ void Game::run()
 
 	cleanUp();
 	CloseWindow();
+}
+
+void Game::loadTextures(int count, string path, string prefix)
+{
+	int n = 1;
+
+	while(n < (count + 1))
+	{
+		textures[prefix + to_string(n)] = LoadTexture(("assets/" + path + prefix + to_string(n) + ".png").c_str());
+		n++;
+	}
+}
+
+void Game::unloadTextures()
+{
+	for (auto const& t : textures)
+	{
+		UnloadTexture(t.second);
+	}
 }
