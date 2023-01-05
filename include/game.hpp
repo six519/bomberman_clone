@@ -5,6 +5,7 @@
 #include <map>
 #include "sprite.hpp"
 #include "stage.hpp"
+#include "levels.hpp"
 
 #define CASTLE_TEXTURE_COUNT 59
 #define CASTLE_TEXTURE_PATH "castle/"
@@ -13,12 +14,14 @@
 using namespace std;
 
 class TitleStage;
+class GameStage;
 
 class Game
 {
 	private:
 		string title;
 		TitleStage *titleStage;
+		GameStage *levelOne;
 		void cleanUp();
 		void loadTextures(int count, string path, string prefix);
 		void unloadTextures();

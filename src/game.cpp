@@ -17,13 +17,15 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 	loadTextures(CASTLE_TEXTURE_COUNT, CASTLE_TEXTURE_PATH, CASTLE_FNAME_PREFIX);
 
 	titleStage = new TitleStage(this, gameWidth, gameHeight);
+	levelOne = new GameStage(this, 272, 208, level1);
 
 	SetTargetFPS(fps);
 }
 
 void Game::cleanUp()
 {
-	titleStage->cleanUp();
+	//titleStage->cleanUp();
+	//levelOne->cleanUp();
 	unloadTextures();
 	CloseAudioDevice();
 }
@@ -41,6 +43,7 @@ void Game::run()
 		switch (state)
 		{
 		case 1:
+			levelOne->run();
 			break;
 		
 		default:

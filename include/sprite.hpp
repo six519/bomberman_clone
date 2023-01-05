@@ -20,6 +20,7 @@ class Sprite
 		Sprite(string imagePath);
 		Sprite();
 		Sprite(string imagePath, int tileCount);
+		Sprite(int tileCount);
 		void unload();
 		Texture2D getTexture();
 		void setTexture(Texture2D texture);

@@ -16,9 +16,8 @@ void Stage::run()
 		this->init();
 		initialized = true;
 	}
-
-	this->handleKeys();
 	this->draw();
+	this->handleKeys();
 }
 
 void Stage::cleanUp()
@@ -53,7 +52,14 @@ void TitleStage::init()
 
 void TitleStage::handleKeys()
 {
-
+	if(IsKeyDown(KEY_ENTER))
+	{
+		StopMusicStream(titleMusic);
+		game->state = 1;
+		state = 0;
+		initialized = false;
+		this->cleanUp();
+	}
 }
 
 void TitleStage::draw()
@@ -115,7 +121,7 @@ void TitleStage::draw()
 	EndTextureMode();
 	ClearBackground(BLACK);
 
-	Rectangle srcRect = (Rectangle){ 0.0, 0.0, static_cast<float>(renderTexture.texture.width), static_cast<float>(-renderTexture.texture.height) };
+	Rectangle srcRect = (Rectangle){ 0.0, 0.0, static_cast<float>(game->gameWidth), static_cast<float>(-game->gameHeight) };
 	Rectangle dstRect = (Rectangle) { static_cast<float>((game->screenWidth / 2.0) - ( (game->screenWidth * ((float)this->height / (float)this->width)) / 2.0)), 0.0, static_cast<float>(game->screenWidth * ((float)this->height / (float)this->width)), static_cast<float>(game->screenHeight) };
 	DrawTexturePro(renderTexture.texture, srcRect , dstRect, (Vector2){ 0.0, 0.0 }, 0.0, WHITE);  
 	EndDrawing();
@@ -132,4 +138,62 @@ void TitleStage::cleanUp()
 	title->unload();
 	enter->unload();
 	UnloadMusicStream(titleMusic);
+}
+
+GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> level) : Stage(gm, width, height)
+{
+	int currentX = 0;
+	int currentY = 0;
+
+	for (auto& it1 : level)
+	{
+		currentX = 0;
+		for(auto& it2 : it1)
+		{
+			Texture2D thisTexture = game->textures[it2];
+			Sprite thisSprite(thisTexture.width / thisTexture.height);
+			thisSprite.setTexture(thisTexture);
+			thisSprite.x = currentX;
+			thisSprite.y = currentY;
+			tiles.push_back(thisSprite);
+			currentX += 16;
+		}
+
+		currentY += 16;
+	}
+}
+
+void GameStage::handleKeys()
+{
+
+}
+
+void GameStage::draw()
+{
+	BeginDrawing();
+	BeginTextureMode(renderTexture);
+
+	for (auto& it : tiles)
+	{
+		it.play();
+	}
+
+
+	EndTextureMode();
+	ClearBackground(BLACK);
+
+	Rectangle srcRect = (Rectangle){ 0.0, 0.0, static_cast<float>(game->gameWidth), static_cast<float>(-game->gameHeight) };
+	Rectangle dstRect = (Rectangle) { static_cast<float>((game->screenWidth / 2.0) - ( (game->screenWidth * ((float)this->height / (float)this->width)) / 2.0)), 0.0, static_cast<float>(game->screenWidth * ((float)this->height / (float)this->width)), static_cast<float>(game->screenHeight) };
+	DrawTexturePro(renderTexture.texture, srcRect , dstRect, (Vector2){ 0.0, 0.0 }, 0.0, WHITE);  
+	EndDrawing();
+}
+
+void GameStage::init()
+{
+
+}
+
+void GameStage::cleanUp()
+{
+
 }

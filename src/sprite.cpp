@@ -34,6 +34,16 @@ Sprite::Sprite(string imagePath, int tileCount)
 	stopped = false;
 }
 
+Sprite::Sprite(int tileCount)
+{
+	x = 0;
+	y = 0;
+	currentFrame = 0;
+	framesCounter = 0;
+	this->tileCount = tileCount;
+	stopped = false;
+}
+
 void Sprite::unload()
 {
 	UnloadTexture(texture);
@@ -47,6 +57,7 @@ Texture2D Sprite::getTexture()
 void Sprite::setTexture(Texture2D texture)
 {
 	this->texture = texture;
+	frameRec = (Rectangle){ 0.0, 0.0, (float)texture.width/tileCount, (float)texture.height };
 }
 
 void Sprite::draw()

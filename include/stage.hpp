@@ -2,6 +2,7 @@
 #define _STAGE_H_
 #include "game.hpp"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -43,5 +44,32 @@ class TitleStage: public Stage {
 	public:
 		void cleanUp();
 };
+
+class GameStage: public Stage {
+	using Stage::Stage;
+	protected:
+		void handleKeys();
+		void draw();
+		void init();
+		vector<Sprite> tiles;
+	public:
+		GameStage(Game *gm, int width, int height, vector<vector <string>> level);
+		void cleanUp();
+};
+
+/*
+class TestStage: public GameStage{
+	using GameStage::GameStage;
+	protected:
+		void handleKeys(){};
+		void draw(){
+			cout << "draw\n";
+		};
+		void init(){};
+
+	public:
+		void cleanUp(){};
+};
+*/
 
 #endif
