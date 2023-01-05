@@ -52,8 +52,12 @@ class GameStage: public Stage {
 		void draw();
 		void init();
 		vector<Sprite> tiles;
+		string title;
+		int txtX;
+		int showCounter;
+		Vector2 txtVec;
 	public:
-		GameStage(Game *gm, int width, int height, vector<vector <string>> level);
+		GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title);
 		void cleanUp();
 };
 

@@ -31,6 +31,7 @@ class Game
 		int gameWidth;
 		int gameHeight;
 		int state;
+		Music stageStart;
 		map<string, Texture2D> textures;
 		Game(string t, int sw, int sh, int gw, int gh, int fps);
 		void run();

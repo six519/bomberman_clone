@@ -140,10 +140,15 @@ void TitleStage::cleanUp()
 	UnloadMusicStream(titleMusic);
 }
 
-GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> level) : Stage(gm, width, height)
+GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title) : Stage(gm, width, height)
 {
 	int currentX = 0;
 	int currentY = 0;
+	this->title = title;
+	showCounter = 0;
+
+	txtVec = MeasureTextEx(GetFontDefault(), this->title.c_str(), 40, 1.5);
+	txtX = game->gameWidth;
 
 	for (auto& it1 : level)
 	{
@@ -172,12 +177,54 @@ void GameStage::draw()
 {
 	BeginDrawing();
 	BeginTextureMode(renderTexture);
-
-	for (auto& it : tiles)
+	ClearBackground(BLACK);
+	switch (state)
 	{
-		it.play();
-	}
+	case 1:
+		UpdateMusicStream(game->stageStart);
+		DrawTextEx(GetFontDefault(), title.c_str(), (Vector2){ (float)txtX, ((game->gameHeight / 2) - (txtVec.y / 2)) - 20 }, 40,1.5, GREEN);
 
+		if (showCounter == 200) {
+			if (txtX > -txtVec.x)
+			{
+				txtX -= 4;
+			}
+			else
+			{
+				StopMusicStream(game->stageStart);
+				state = 2;
+			} 
+		}
+		else
+		{
+			showCounter += 1;
+		}
+
+		break;
+	case 2:
+
+		for (auto& it : tiles)
+		{
+			it.play();
+		}
+
+		break;
+	
+	default:
+		UpdateMusicStream(game->stageStart);
+		if (txtX > (game->gameWidth / 2) - (txtVec.x / 2))
+		{
+			txtX -= 4;
+		} 
+		else
+		{
+			state = 1;
+		}
+
+		DrawTextEx(GetFontDefault(), title.c_str(), (Vector2){ (float)txtX, ((game->gameHeight / 2) - (txtVec.y / 2)) - 20 }, 40,1.5, GREEN);
+		break;
+
+	}
 
 	EndTextureMode();
 	ClearBackground(BLACK);
@@ -190,7 +237,7 @@ void GameStage::draw()
 
 void GameStage::init()
 {
-
+	PlayMusicStream(game->stageStart);
 }
 
 void GameStage::cleanUp()
