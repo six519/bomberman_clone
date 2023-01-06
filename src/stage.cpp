@@ -214,6 +214,7 @@ void GameStage::draw()
 		}
 
 		hud->draw();
+		game->player->play();
 
 		break;
 	

@@ -12,6 +12,8 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 	InitWindow(screenWidth, screenHeight, title.c_str());
 	InitAudioDevice();
 
+	player = new Player();
+
 	//load castle textures
 	loadTextures(CASTLE_TEXTURE_COUNT, CASTLE_TEXTURE_PATH, CASTLE_FNAME_PREFIX);
 
@@ -26,6 +28,7 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 
 void Game::cleanUp()
 {
+	player->unload();
 	UnloadMusicStream(stageStart);
 	UnloadMusicStream(bgm1);
 	unloadTextures();
@@ -78,7 +81,4 @@ void Game::unloadTextures()
 	{
 		UnloadTexture(t.second);
 	}
-
-	//manual unload
-	UnloadTexture(textures["hud"]);
 }

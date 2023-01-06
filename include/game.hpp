@@ -8,6 +8,7 @@
 #include "stage.hpp"
 #include "levels.hpp"
 #include "settings.hpp"
+#include "player.hpp"
 
 #define CASTLE_TEXTURE_COUNT 59
 #define CASTLE_TEXTURE_PATH "castle/"
@@ -36,6 +37,7 @@ class Game
 		Music stageStart;
 		Music bgm1;
 		map<string, Texture2D> textures;
+		Player *player;
 		Game(string t, int sw, int sh, int gw, int gh, int fps);
 		void run();
 };
