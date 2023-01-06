@@ -1,5 +1,4 @@
 #include "game.hpp"
-#include <raylib.h>
 
 Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 {
@@ -20,7 +19,7 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 	bgm1 = LoadMusicStream("assets/bgm1.mp3");
 
 	titleStage = new TitleStage(this, gameWidth, gameHeight);
-	levelOne = new GameStage(this, 272, 208, level1, "STAGE 1", bgm1);
+	levelOne = new GameStage(this, 272, GAME_HEIGHT, level1, "STAGE 1", bgm1);
 
 	SetTargetFPS(fps);
 }
@@ -68,6 +67,9 @@ void Game::loadTextures(int count, string path, string prefix)
 		textures[prefix + to_string(n)] = LoadTexture(("assets/" + path + prefix + to_string(n) + ".png").c_str());
 		n++;
 	}
+
+	//manual load
+	textures["hud"] = LoadTexture("assets/hud.png");
 }
 
 void Game::unloadTextures()
@@ -76,4 +78,7 @@ void Game::unloadTextures()
 	{
 		UnloadTexture(t.second);
 	}
+
+	//manual unload
+	UnloadTexture(textures["hud"]);
 }

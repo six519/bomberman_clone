@@ -143,13 +143,16 @@ void TitleStage::cleanUp()
 GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title, Music bg) : Stage(gm, width, height)
 {
 	int currentX = 0;
-	int currentY = 0;
+	int currentY = 16;
 	this->title = title;
 	showCounter = 0;
 	currentBg = bg;
 
 	txtVec = MeasureTextEx(GetFontDefault(), this->title.c_str(), 40, 1.5);
 	txtX = game->gameWidth;
+
+	hud = new Sprite();
+	hud->setTexture(game->textures["hud"]);
 
 	for (auto& it1 : level)
 	{
@@ -209,6 +212,8 @@ void GameStage::draw()
 		{
 			it.play();
 		}
+
+		hud->draw();
 
 		break;
 	

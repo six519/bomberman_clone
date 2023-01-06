@@ -52,6 +52,7 @@ class GameStage: public Stage {
 		void draw();
 		void init();
 		vector<Sprite> tiles;
+		Sprite *hud;
 		string title;
 		int txtX;
 		int showCounter;

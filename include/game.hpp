@@ -3,9 +3,11 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <raylib.h>
 #include "sprite.hpp"
 #include "stage.hpp"
 #include "levels.hpp"
+#include "settings.hpp"
 
 #define CASTLE_TEXTURE_COUNT 59
 #define CASTLE_TEXTURE_PATH "castle/"
