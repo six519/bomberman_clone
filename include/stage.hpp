@@ -56,8 +56,9 @@ class GameStage: public Stage {
 		int txtX;
 		int showCounter;
 		Vector2 txtVec;
+		Music currentBg;
 	public:
-		GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title);
+		GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title, Music bg);
 		void cleanUp();
 };
 

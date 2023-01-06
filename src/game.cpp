@@ -17,18 +17,18 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 	loadTextures(CASTLE_TEXTURE_COUNT, CASTLE_TEXTURE_PATH, CASTLE_FNAME_PREFIX);
 
 	stageStart = LoadMusicStream("assets/stage_start.mp3");
+	bgm1 = LoadMusicStream("assets/bgm1.mp3");
 
 	titleStage = new TitleStage(this, gameWidth, gameHeight);
-	levelOne = new GameStage(this, 272, 208, level1, "STAGE 1");
+	levelOne = new GameStage(this, 272, 208, level1, "STAGE 1", bgm1);
 
 	SetTargetFPS(fps);
 }
 
 void Game::cleanUp()
 {
-	//titleStage->cleanUp();
-	//levelOne->cleanUp();
 	UnloadMusicStream(stageStart);
+	UnloadMusicStream(bgm1);
 	unloadTextures();
 	CloseAudioDevice();
 }
