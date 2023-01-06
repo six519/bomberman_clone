@@ -174,7 +174,41 @@ GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> le
 
 void GameStage::handleKeys()
 {
-
+	if (state == 2)
+	{
+		if (IsKeyPressed(KEY_UP))
+		{
+			game->player->currentMovement = PLAYER_WALK_UP;
+		}
+		else if (IsKeyReleased(KEY_UP))
+		{
+			game->player->currentMovement = PLAYER_UP;
+		}
+		else if (IsKeyPressed(KEY_DOWN))
+		{
+			game->player->currentMovement = PLAYER_WALK_DOWN;
+		}
+		else if (IsKeyReleased(KEY_DOWN))
+		{
+			game->player->currentMovement = PLAYER_DOWN;
+		}
+		else if (IsKeyPressed(KEY_LEFT))
+		{
+			game->player->currentMovement = PLAYER_WALK_LEFT;
+		}
+		else if (IsKeyReleased(KEY_LEFT))
+		{
+			game->player->currentMovement = PLAYER_LEFT;
+		}
+		else if (IsKeyPressed(KEY_RIGHT))
+		{
+			game->player->currentMovement = PLAYER_WALK_RIGHT;
+		}
+		else if (IsKeyReleased(KEY_RIGHT))
+		{
+			game->player->currentMovement = PLAYER_RIGHT;
+		}
+	}
 }
 
 void GameStage::draw()
