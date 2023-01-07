@@ -13,6 +13,8 @@
 #define PLAYER_WALK_LEFT 6
 #define PLAYER_WALK_RIGHT 7
 
+#define PLAYER_SPEED 1
+
 using namespace std;
 
 class Player

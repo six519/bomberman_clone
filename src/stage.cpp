@@ -181,6 +181,7 @@ void GameStage::handleKeys()
 		if (IsKeyDown(KEY_UP))
 		{
 			game->player->currentMovement = PLAYER_WALK_UP;
+			game->player->y -= PLAYER_SPEED;
 		}
 		else if (IsKeyReleased(KEY_UP))
 		{
@@ -189,6 +190,7 @@ void GameStage::handleKeys()
 		else if (IsKeyDown(KEY_DOWN))
 		{
 			game->player->currentMovement = PLAYER_WALK_DOWN;
+			game->player->y += PLAYER_SPEED;
 		}
 		else if (IsKeyReleased(KEY_DOWN))
 		{
@@ -197,6 +199,7 @@ void GameStage::handleKeys()
 		else if (IsKeyDown(KEY_LEFT))
 		{
 			game->player->currentMovement = PLAYER_WALK_LEFT;
+			game->player->x -= PLAYER_SPEED;
 		}
 		else if (IsKeyReleased(KEY_LEFT))
 		{
@@ -205,6 +208,7 @@ void GameStage::handleKeys()
 		else if (IsKeyDown(KEY_RIGHT))
 		{
 			game->player->currentMovement = PLAYER_WALK_RIGHT;
+			game->player->x += PLAYER_SPEED;
 		}
 		else if (IsKeyReleased(KEY_RIGHT))
 		{
