@@ -74,9 +74,9 @@ bool Player::isCollided(Sprite s)
 	if (!s.solid)
 		return false;
 
-	int lowerX1 = this->x + 16 - 1;
+	int lowerX1 = this->x + 15 - 1;
 	int lowerY1 = (this->y + 16) + 16 - 1; //bottom part of player
-	int lowerX2 = s.x + s.getTexture().width - 1;
+	int lowerX2 = s.x + s.getTexture().width - 2;
 	int lowerY2 = s.y + s.getTexture().height - 1;
 
 	if (lowerX1 < s.x || this->x > lowerX2 || lowerY1 < s.y || (this->y + 16) > lowerY2) 

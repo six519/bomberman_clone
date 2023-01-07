@@ -222,6 +222,11 @@ void GameStage::handleKeys()
 
 void GameStage::draw()
 {
+
+	bool collides = false;
+	int lastX = 0;
+	int lastY = 0;
+
 	BeginDrawing();
 	BeginTextureMode(renderTexture);
 	ClearBackground(BLACK);
@@ -258,21 +263,30 @@ void GameStage::draw()
 
 			if (game->player->isCollided(it))
 			{
-				cout << "Collision With:" << "\n";
-				cout << "x: " << it.x << "\n";
-				cout << "y: " << it.y << "\n";
-				cout << "----------------\n";
+				collides = true;
+				lastX = it.x;
+				lastY = it.y;
 			}
 		}
 
 		switch (game->player->currentMovement)
 		{
 		case PLAYER_WALK_UP:
-			game->player->y -= PLAYER_SPEED;
+
+			if (!(collides > 0 && lastY <= game->player->y + 16))
+			{
+				game->player->y -= PLAYER_SPEED;
+			}
+
 			break;
 
 		case PLAYER_WALK_DOWN:
-			game->player->y += PLAYER_SPEED;
+
+			if (!(collides > 0 && lastY >= game->player->y + 16))
+			{
+				game->player->y += PLAYER_SPEED;
+			}
+
 			break;
 		case PLAYER_WALK_LEFT:
 			game->player->x -= PLAYER_SPEED;
