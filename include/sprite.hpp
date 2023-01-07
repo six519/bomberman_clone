@@ -26,6 +26,7 @@ class Sprite
 		void setTexture(Texture2D texture);
 		void draw();
 		void play();
+		void playIndex(int ind);
 };
 
 #endif

@@ -1,5 +1,6 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
+#include "sprite.hpp"
 #include <string>
 #include <raylib.h>
 
@@ -17,6 +18,10 @@ using namespace std;
 class Player
 {
 	private:
+		Sprite *up;
+		Sprite *down;
+		Sprite *left;
+		Sprite *right;
 	public:
 		int x;
 		int y;

@@ -140,7 +140,7 @@ void TitleStage::cleanUp()
 	UnloadMusicStream(titleMusic);
 }
 
-GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title, Music bg) : Stage(gm, width, height)
+GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title, Music bg, int px, int py) : Stage(gm, width, height)
 {
 	int currentX = 0;
 	int currentY = 16;
@@ -170,13 +170,15 @@ GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> le
 
 		currentY += 16;
 	}
+	game->player->x = px;
+	game->player->y = py;
 }
 
 void GameStage::handleKeys()
 {
 	if (state == 2)
 	{
-		if (IsKeyPressed(KEY_UP))
+		if (IsKeyDown(KEY_UP))
 		{
 			game->player->currentMovement = PLAYER_WALK_UP;
 		}
@@ -184,7 +186,7 @@ void GameStage::handleKeys()
 		{
 			game->player->currentMovement = PLAYER_UP;
 		}
-		else if (IsKeyPressed(KEY_DOWN))
+		else if (IsKeyDown(KEY_DOWN))
 		{
 			game->player->currentMovement = PLAYER_WALK_DOWN;
 		}
@@ -192,7 +194,7 @@ void GameStage::handleKeys()
 		{
 			game->player->currentMovement = PLAYER_DOWN;
 		}
-		else if (IsKeyPressed(KEY_LEFT))
+		else if (IsKeyDown(KEY_LEFT))
 		{
 			game->player->currentMovement = PLAYER_WALK_LEFT;
 		}
@@ -200,7 +202,7 @@ void GameStage::handleKeys()
 		{
 			game->player->currentMovement = PLAYER_LEFT;
 		}
-		else if (IsKeyPressed(KEY_RIGHT))
+		else if (IsKeyDown(KEY_RIGHT))
 		{
 			game->player->currentMovement = PLAYER_WALK_RIGHT;
 		}
@@ -208,6 +210,7 @@ void GameStage::handleKeys()
 		{
 			game->player->currentMovement = PLAYER_RIGHT;
 		}
+
 	}
 }
 

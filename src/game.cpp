@@ -21,7 +21,7 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 	bgm1 = LoadMusicStream("assets/bgm1.mp3");
 
 	titleStage = new TitleStage(this, gameWidth, gameHeight);
-	levelOne = new GameStage(this, 272, GAME_HEIGHT, level1, "STAGE 1", bgm1);
+	levelOne = new GameStage(this, 272, GAME_HEIGHT, level1, "STAGE 1", bgm1, 128, 144);
 
 	SetTargetFPS(fps);
 }

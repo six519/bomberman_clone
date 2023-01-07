@@ -65,6 +65,12 @@ void Sprite::draw()
 	DrawTexture(texture, x, y, WHITE);
 }
 
+void Sprite::playIndex(int ind)
+{
+	frameRec.x = (float)ind*(float)texture.width/tileCount;
+	DrawTextureRec(texture, frameRec, (Vector2){ (float)x,(float)y }, WHITE);
+}
+
 void Sprite::play()
 {
 	if (tileCount > 0)
