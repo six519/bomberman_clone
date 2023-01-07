@@ -31,6 +31,7 @@ class Player
 		Player();
 		void unload();
 		void play();
+		bool isCollided(Sprite s);
 };
 
 #endif

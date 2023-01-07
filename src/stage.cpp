@@ -164,6 +164,12 @@ GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> le
 			thisSprite.setTexture(thisTexture);
 			thisSprite.x = currentX;
 			thisSprite.y = currentY;
+
+			if (find(notSolidList.begin(), notSolidList.end(), it2) != notSolidList.end())
+			{
+				thisSprite.solid = false;
+			}
+
 			tiles.push_back(thisSprite);
 			currentX += 16;
 		}
@@ -181,7 +187,6 @@ void GameStage::handleKeys()
 		if (IsKeyDown(KEY_UP))
 		{
 			game->player->currentMovement = PLAYER_WALK_UP;
-			game->player->y -= PLAYER_SPEED;
 		}
 		else if (IsKeyReleased(KEY_UP))
 		{
@@ -190,7 +195,6 @@ void GameStage::handleKeys()
 		else if (IsKeyDown(KEY_DOWN))
 		{
 			game->player->currentMovement = PLAYER_WALK_DOWN;
-			game->player->y += PLAYER_SPEED;
 		}
 		else if (IsKeyReleased(KEY_DOWN))
 		{
@@ -199,7 +203,6 @@ void GameStage::handleKeys()
 		else if (IsKeyDown(KEY_LEFT))
 		{
 			game->player->currentMovement = PLAYER_WALK_LEFT;
-			game->player->x -= PLAYER_SPEED;
 		}
 		else if (IsKeyReleased(KEY_LEFT))
 		{
@@ -208,7 +211,6 @@ void GameStage::handleKeys()
 		else if (IsKeyDown(KEY_RIGHT))
 		{
 			game->player->currentMovement = PLAYER_WALK_RIGHT;
-			game->player->x += PLAYER_SPEED;
 		}
 		else if (IsKeyReleased(KEY_RIGHT))
 		{
@@ -249,9 +251,38 @@ void GameStage::draw()
 		break;
 	case 2:
 		UpdateMusicStream(currentBg);
+
 		for (auto& it : tiles)
 		{
 			it.play();
+
+			if (game->player->isCollided(it))
+			{
+				cout << "Collision With:" << "\n";
+				cout << "x: " << it.x << "\n";
+				cout << "y: " << it.y << "\n";
+				cout << "----------------\n";
+			}
+		}
+
+		switch (game->player->currentMovement)
+		{
+		case PLAYER_WALK_UP:
+			game->player->y -= PLAYER_SPEED;
+			break;
+
+		case PLAYER_WALK_DOWN:
+			game->player->y += PLAYER_SPEED;
+			break;
+		case PLAYER_WALK_LEFT:
+			game->player->x -= PLAYER_SPEED;
+			break;
+		case PLAYER_WALK_RIGHT:
+			game->player->x += PLAYER_SPEED;
+			break;
+		
+		default:
+			break;
 		}
 
 		hud->draw();

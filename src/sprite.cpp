@@ -10,6 +10,7 @@ Sprite::Sprite(string imagePath)
 	framesCounter = 0;
 	tileCount = 0;
 	stopped = false;
+	solid = true;
 }
 
 Sprite::Sprite()
@@ -20,6 +21,7 @@ Sprite::Sprite()
 	framesCounter = 0;
 	tileCount = 0;
 	stopped = false;
+	solid = true;
 }
 
 Sprite::Sprite(string imagePath, int tileCount)
@@ -32,6 +34,7 @@ Sprite::Sprite(string imagePath, int tileCount)
 	this->tileCount = tileCount;
 	frameRec = (Rectangle){ 0.0, 0.0, (float)texture.width/tileCount, (float)texture.height };
 	stopped = false;
+	solid = true;
 }
 
 Sprite::Sprite(int tileCount)
@@ -42,6 +45,7 @@ Sprite::Sprite(int tileCount)
 	framesCounter = 0;
 	this->tileCount = tileCount;
 	stopped = false;
+	solid = true;
 }
 
 void Sprite::unload()

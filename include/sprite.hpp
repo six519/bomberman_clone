@@ -27,6 +27,7 @@ class Sprite
 		void draw();
 		void play();
 		void playIndex(int ind);
+		bool solid;
 };
 
 #endif

@@ -5,6 +5,13 @@
 
 using namespace std;
 
+const vector<string> notSolidList = {
+	"c15",
+	"c20",
+	"c30",
+	"c34",
+};
+
 const vector<vector <string>> level1 = {
 	{"c1", "c2", "c3", "c3", "c3", "c3", "c3", "c3", "c3", "c3", "c3", "c4", "c5", "c6", "c3", "c52", "c53"},
 	{"c7", "c8", "c9", "c9", "c9", "c9", "c9", "c9", "c9", "c9", "c9", "c10", "c11", "c12", "c9", "c21", "c22"},
