@@ -60,6 +60,8 @@ class GameStage: public Stage {
 		Vector2 txtVec;
 		Music currentBg;
 		void playerMove(int move);
+		void slideUporDown();
+		void slideLeftorRight();
 	public:
 		GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title, Music bg, int px, int py);
 		void cleanUp();

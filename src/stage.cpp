@@ -208,6 +208,36 @@ void GameStage::playerMove(int move)
 	}
 }
 
+void GameStage::slideUporDown()
+{
+	if(game->player->collidedCount == 1)
+	{
+		if (game->player->x > game->player->lastCollidedX && ((game->player->lastCollidedX + 16) - game->player->x) <= 10)
+		{
+			game->player->x += PLAYER_SPEED;
+		}
+		else if (game->player->x < game->player->lastCollidedX && ((game->player->x + 16) - game->player->lastCollidedX) <= 10)
+		{
+			game->player->x -= PLAYER_SPEED;
+		}
+	}
+}
+
+void GameStage::slideLeftorRight()
+{
+	if(game->player->collidedCount == 1)
+	{
+		if ((game->player->y + 16) > game->player->lastCollidedY && ((game->player->lastCollidedY + 16) - (game->player->y + 16)) <= 10)
+		{
+			game->player->y += PLAYER_SPEED;
+		}
+		else if ((game->player->y + 16) < game->player->lastCollidedY && (((game->player->y + 16) + 16) - game->player->lastCollidedY) <= 10)
+		{
+			game->player->y -= PLAYER_SPEED;
+		}
+	}
+}
+
 void GameStage::handleKeys()
 {
 	if (state == 2)
@@ -219,6 +249,10 @@ void GameStage::handleKeys()
 			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_UP || game->player->lastMovement == PLAYER_UP)))
 			{
 				playerMove(PLAYER_WALK_UP);
+			}
+			else
+			{
+				slideUporDown();
 			}
 
 			if (game->player->collided)
@@ -259,6 +293,10 @@ void GameStage::handleKeys()
 			{
 				playerMove(PLAYER_WALK_DOWN);
 			}
+			else
+			{
+				slideUporDown();
+			}
 
 			if (game->player->collided)
 			{
@@ -298,6 +336,10 @@ void GameStage::handleKeys()
 			{
 				playerMove(PLAYER_WALK_LEFT);
 			}
+			else
+			{
+				slideLeftorRight();
+			}
 
 			if (game->player->collided)
 			{
@@ -335,6 +377,10 @@ void GameStage::handleKeys()
 			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_RIGHT || game->player->lastMovement == PLAYER_RIGHT)))
 			{
 				playerMove(PLAYER_WALK_RIGHT);
+			}
+			else
+			{
+				slideLeftorRight();
 			}
 
 			if (game->player->collided)
@@ -375,6 +421,7 @@ void GameStage::draw()
 {
 
 	bool collided = false;
+	int collidedCount = 0;
 
 	BeginDrawing();
 	BeginTextureMode(renderTexture);
@@ -413,11 +460,15 @@ void GameStage::draw()
 			if (game->player->isCollided(it))
 			{
 				collided = true;
+				collidedCount += 1;
+				game->player->lastCollidedX = it.x;
+				game->player->lastCollidedY = it.y;
 				game->player->lastMovement = game->player->currentMovement;
 			}
 		}
 
 		game->player->collided = collided;
+		game->player->collidedCount = collidedCount;
 
 		hud->draw();
 		game->player->play();

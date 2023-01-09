@@ -6,6 +6,9 @@ Player::Player()
 	currentMovement = PLAYER_DOWN;
 	x = 0;
 	y = 0;
+	collidedCount = 0;
+	lastCollidedX = 0;
+	lastCollidedY = 0;
 
 	up = new Sprite("assets/u.png", 4);
 	down = new Sprite("assets/d.png", 4);
