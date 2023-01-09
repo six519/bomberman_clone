@@ -28,6 +28,8 @@ class Player
 		int x;
 		int y;
 		int currentMovement;
+		int lastMovement;
+		bool collided;
 		Player();
 		void unload();
 		void play();

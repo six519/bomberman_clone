@@ -8,6 +8,7 @@ using namespace std;
 const vector<string> notSolidList = {
 	"c15",
 	"c20",
+	"c28",
 	"c30",
 	"c34",
 };

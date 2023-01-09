@@ -187,34 +187,157 @@ void GameStage::handleKeys()
 		if (IsKeyDown(KEY_UP))
 		{
 			game->player->currentMovement = PLAYER_WALK_UP;
+
+			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_UP || game->player->lastMovement == PLAYER_UP)))
+			{
+				game->player->y -= PLAYER_SPEED;
+			}
+
+			if (game->player->collided)
+			{
+				if (game->player->lastMovement == PLAYER_WALK_LEFT)
+				{
+					game->player->x += PLAYER_SPEED;	
+				}
+
+				if (game->player->lastMovement == PLAYER_WALK_RIGHT)
+				{
+					game->player->x -= PLAYER_SPEED;	
+				}
+
+				if (game->player->lastMovement == PLAYER_WALK_DOWN)
+				{
+					game->player->y -= PLAYER_SPEED;	
+				}
+
+			}
+
 		}
 		else if (IsKeyReleased(KEY_UP))
 		{
 			game->player->currentMovement = PLAYER_UP;
+
+			if (game->player->collided)
+			{
+				game->player->y += PLAYER_SPEED;
+			}
+
 		}
 		else if (IsKeyDown(KEY_DOWN))
 		{
 			game->player->currentMovement = PLAYER_WALK_DOWN;
+
+			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_DOWN || game->player->lastMovement == PLAYER_DOWN)))
+			{
+				game->player->y += PLAYER_SPEED;
+			}
+
+			if (game->player->collided)
+			{
+				if (game->player->lastMovement == PLAYER_WALK_LEFT)
+				{
+					game->player->x += PLAYER_SPEED;	
+				}
+
+				if (game->player->lastMovement == PLAYER_WALK_RIGHT)
+				{
+					game->player->x -= PLAYER_SPEED;	
+				}
+
+				if (game->player->lastMovement == PLAYER_WALK_UP)
+				{
+					game->player->y += PLAYER_SPEED;	
+				}
+
+			}
+
 		}
 		else if (IsKeyReleased(KEY_DOWN))
 		{
 			game->player->currentMovement = PLAYER_DOWN;
+
+			if (game->player->collided)
+			{
+				game->player->y -= PLAYER_SPEED;
+			}
+
 		}
 		else if (IsKeyDown(KEY_LEFT))
 		{
 			game->player->currentMovement = PLAYER_WALK_LEFT;
+
+			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_LEFT || game->player->lastMovement == PLAYER_LEFT)))
+			{
+				game->player->x -= PLAYER_SPEED;
+			}
+
+			if (game->player->collided)
+			{
+				if (game->player->lastMovement == PLAYER_WALK_RIGHT)
+				{
+					game->player->x -= PLAYER_SPEED;	
+				}
+
+				if (game->player->lastMovement == PLAYER_WALK_UP)
+				{
+					game->player->y += PLAYER_SPEED;	
+				}
+
+				if (game->player->lastMovement == PLAYER_WALK_DOWN)
+				{
+					game->player->y -= PLAYER_SPEED;	
+				}
+			}
+
 		}
 		else if (IsKeyReleased(KEY_LEFT))
 		{
 			game->player->currentMovement = PLAYER_LEFT;
+
+			if (game->player->collided)
+			{
+				game->player->x += PLAYER_SPEED;
+			}
+
 		}
 		else if (IsKeyDown(KEY_RIGHT))
 		{
 			game->player->currentMovement = PLAYER_WALK_RIGHT;
+
+			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_RIGHT || game->player->lastMovement == PLAYER_RIGHT)))
+			{
+				game->player->x += PLAYER_SPEED;
+			}
+
+			if (game->player->collided)
+			{
+				if (game->player->lastMovement == PLAYER_WALK_LEFT)
+				{
+					game->player->x += PLAYER_SPEED;	
+				}
+
+				if (game->player->lastMovement == PLAYER_WALK_UP)
+				{
+					game->player->y += PLAYER_SPEED;	
+				}
+
+				if (game->player->lastMovement == PLAYER_WALK_DOWN)
+				{
+					game->player->y -= PLAYER_SPEED;	
+				}
+
+			}
+
 		}
 		else if (IsKeyReleased(KEY_RIGHT))
 		{
 			game->player->currentMovement = PLAYER_RIGHT;
+
+			if (game->player->collided)
+			{
+				game->player->x -= PLAYER_SPEED;
+			}
+
 		}
 
 	}
@@ -223,9 +346,7 @@ void GameStage::handleKeys()
 void GameStage::draw()
 {
 
-	bool collides = false;
-	int lastX = 0;
-	int lastY = 0;
+	bool collided = false;
 
 	BeginDrawing();
 	BeginTextureMode(renderTexture);
@@ -263,41 +384,12 @@ void GameStage::draw()
 
 			if (game->player->isCollided(it))
 			{
-				collides = true;
-				lastX = it.x;
-				lastY = it.y;
+				collided = true;
+				game->player->lastMovement = game->player->currentMovement;
 			}
 		}
 
-		switch (game->player->currentMovement)
-		{
-		case PLAYER_WALK_UP:
-
-			if (!(collides > 0 && lastY <= game->player->y + 16))
-			{
-				game->player->y -= PLAYER_SPEED;
-			}
-
-			break;
-
-		case PLAYER_WALK_DOWN:
-
-			if (!(collides > 0 && lastY >= game->player->y + 16))
-			{
-				game->player->y += PLAYER_SPEED;
-			}
-
-			break;
-		case PLAYER_WALK_LEFT:
-			game->player->x -= PLAYER_SPEED;
-			break;
-		case PLAYER_WALK_RIGHT:
-			game->player->x += PLAYER_SPEED;
-			break;
-		
-		default:
-			break;
-		}
+		game->player->collided = collided;
 
 		hud->draw();
 		game->player->play();
