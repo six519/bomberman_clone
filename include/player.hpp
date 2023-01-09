@@ -14,6 +14,7 @@
 #define PLAYER_WALK_RIGHT 7
 
 #define PLAYER_SPEED 1
+#define PLAYER_FRAME_SPEED 38
 
 using namespace std;
 
@@ -34,6 +35,7 @@ class Player
 		void unload();
 		void play();
 		bool isCollided(Sprite s);
+		int framesCounter;
 };
 
 #endif

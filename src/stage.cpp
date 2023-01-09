@@ -180,6 +180,34 @@ GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> le
 	game->player->y = py;
 }
 
+void GameStage::playerMove(int move)
+{
+	game->player->framesCounter++;
+
+	if (game->player->framesCounter >= (TARGET_FPS / PLAYER_FRAME_SPEED))
+	{
+		game->player->framesCounter = 0;
+
+		if (move == PLAYER_WALK_UP)
+		{
+			game->player->y -= PLAYER_SPEED;
+		}
+		else if (move == PLAYER_WALK_DOWN)
+		{
+			game->player->y += PLAYER_SPEED;
+		}
+		else if (move == PLAYER_WALK_LEFT)
+		{
+			game->player->x -= PLAYER_SPEED;
+		}
+		else if (move == PLAYER_WALK_RIGHT)
+		{
+			game->player->x += PLAYER_SPEED;
+		}
+
+	}
+}
+
 void GameStage::handleKeys()
 {
 	if (state == 2)
@@ -190,7 +218,7 @@ void GameStage::handleKeys()
 
 			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_UP || game->player->lastMovement == PLAYER_UP)))
 			{
-				game->player->y -= PLAYER_SPEED;
+				playerMove(PLAYER_WALK_UP);
 			}
 
 			if (game->player->collided)
@@ -229,7 +257,7 @@ void GameStage::handleKeys()
 
 			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_DOWN || game->player->lastMovement == PLAYER_DOWN)))
 			{
-				game->player->y += PLAYER_SPEED;
+				playerMove(PLAYER_WALK_DOWN);
 			}
 
 			if (game->player->collided)
@@ -268,7 +296,7 @@ void GameStage::handleKeys()
 
 			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_LEFT || game->player->lastMovement == PLAYER_LEFT)))
 			{
-				game->player->x -= PLAYER_SPEED;
+				playerMove(PLAYER_WALK_LEFT);
 			}
 
 			if (game->player->collided)
@@ -306,7 +334,7 @@ void GameStage::handleKeys()
 
 			if (!(game->player->collided && (game->player->lastMovement == PLAYER_WALK_RIGHT || game->player->lastMovement == PLAYER_RIGHT)))
 			{
-				game->player->x += PLAYER_SPEED;
+				playerMove(PLAYER_WALK_RIGHT);
 			}
 
 			if (game->player->collided)
