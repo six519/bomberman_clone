@@ -1,7 +1,7 @@
 #ifndef _SETTINGS_H_
 #define _SETTINGS_H_
 
-#define TITLE "Super Bomberman 2"
+#define TITLE "Super Bomberman 2 Clone"
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 768
 #define GAME_WIDTH 256

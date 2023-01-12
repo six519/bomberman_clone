@@ -33,7 +33,7 @@ void TitleStage::init()
 	ship->setMoveSpeed(SHIP_SPEED);
 	char1 = new Sprite("assets/char1_title.png");
 	char1->setMoveSpeed(CHAR_SPEED);
-	char1->setMoveAmount(4);
+	char1->setMoveAmount(6);
 	char2 = new Sprite("assets/char2_title.png");
 	char2->setMoveAmount(3);
 	char2->setMoveSpeed(CHAR_SPEED);
@@ -76,20 +76,21 @@ void TitleStage::draw()
 
 	bgTitle->draw();
 	ship->draw();
-	char1->draw();
 	char2->draw();
 	title->draw();
+	char1->draw();
 
 	switch (state)
 	{
 	case 1:
-		if (char1->y <= (game->gameHeight / 2) - (char1->getTexture().height / 2)) 
-		{
-			char1->moveDown();
-		}
 		if (char2->y >= 142)
 		{
 			char2->moveUp();
+		}
+
+		if (char1->y <= 90) 
+		{
+			char1->moveDown();
 		}
 		else
 		{
