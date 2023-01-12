@@ -8,5 +8,7 @@
 #define GAME_HEIGHT 224
 #define TARGET_FPS 60
 #define FRAME_SPEED 5
+#define SHIP_SPEED 40
+#define CHAR_SPEED 60
 
 #endif

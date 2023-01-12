@@ -8,9 +8,12 @@ Sprite::Sprite(string imagePath)
 	y = 0;
 	currentFrame = 0;
 	framesCounter = 0;
+	speedCounter = 0;
 	tileCount = 0;
 	stopped = false;
 	solid = true;
+	moveSpeed = 1;
+	moveAmount = 1;
 }
 
 Sprite::Sprite()
@@ -19,9 +22,12 @@ Sprite::Sprite()
 	y = 0;
 	currentFrame = 0;
 	framesCounter = 0;
+	speedCounter = 0;
 	tileCount = 0;
 	stopped = false;
 	solid = true;
+	moveSpeed = 1;
+	moveAmount = 1;
 }
 
 Sprite::Sprite(string imagePath, int tileCount)
@@ -31,10 +37,13 @@ Sprite::Sprite(string imagePath, int tileCount)
 	y = 0;
 	currentFrame = 0;
 	framesCounter = 0;
+	speedCounter = 0;
 	this->tileCount = tileCount;
 	frameRec = (Rectangle){ 0.0, 0.0, (float)texture.width/tileCount, (float)texture.height };
 	stopped = false;
 	solid = true;
+	moveSpeed = 1;
+	moveAmount = 1;
 }
 
 Sprite::Sprite(int tileCount)
@@ -43,9 +52,12 @@ Sprite::Sprite(int tileCount)
 	y = 0;
 	currentFrame = 0;
 	framesCounter = 0;
+	speedCounter = 0;
 	this->tileCount = tileCount;
 	stopped = false;
 	solid = true;
+	moveSpeed = 1;
+	moveAmount = 1;
 }
 
 void Sprite::unload()
@@ -98,4 +110,61 @@ void Sprite::play()
 
 		DrawTextureRec(texture, frameRec, (Vector2){ (float)x,(float)y }, WHITE);
 	}
+}
+
+void Sprite::setMoveAmount(int a)
+{
+	moveAmount = a;
+}
+
+void Sprite::move(int m)
+{
+	speedCounter++;
+
+	if (speedCounter >= (TARGET_FPS / moveSpeed))
+	{
+
+		switch (m)
+		{
+		case SPRITE_MOVE_DOWN:
+			this->y += moveAmount;
+			break;
+		case SPRITE_MOVE_LEFT:
+			this->x -= moveAmount;
+			break;
+		case SPRITE_MOVE_RIGHT:
+			this->x += moveAmount;
+			break;
+		default:
+			this->y -= moveAmount;
+			break;
+		}
+
+		speedCounter = 0;
+	}
+}
+
+void Sprite::moveDown()
+{
+	move(SPRITE_MOVE_DOWN);
+}
+
+void Sprite::moveUp()
+{
+	move(SPRITE_MOVE_UP);
+}
+
+void Sprite::moveLeft()
+{
+	move(SPRITE_MOVE_LEFT);
+}
+
+void Sprite::moveRight()
+{
+	move(SPRITE_MOVE_RIGHT);
+}
+
+void Sprite::setMoveSpeed(int speed)
+{
+	moveSpeed = speed;
 }

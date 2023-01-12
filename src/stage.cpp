@@ -30,9 +30,16 @@ void TitleStage::init()
 {
 	bgTitle = new Sprite("assets/bg_title.png");
 	ship = new Sprite("assets/ship_title.png");
+	ship->setMoveSpeed(SHIP_SPEED);
 	char1 = new Sprite("assets/char1_title.png");
+	char1->setMoveSpeed(CHAR_SPEED);
+	char1->setMoveAmount(4);
 	char2 = new Sprite("assets/char2_title.png");
+	char2->setMoveAmount(3);
+	char2->setMoveSpeed(CHAR_SPEED);
 	title = new Sprite("assets/text_title.png");
+	title->setMoveSpeed(CHAR_SPEED);
+	title->setMoveAmount(8);
 	enter = new Sprite("assets/press_enter_title.png");
 	titleMusic = LoadMusicStream("assets/title.mp3");
 	bomb = new Sprite("assets/bomb.png", 4);
@@ -78,11 +85,11 @@ void TitleStage::draw()
 	case 1:
 		if (char1->y <= (game->gameHeight / 2) - (char1->getTexture().height / 2)) 
 		{
-			char1->y += 10;
+			char1->moveDown();
 		}
 		if (char2->y >= 142)
 		{
-			char2->y -= 5;
+			char2->moveUp();
 		}
 		else
 		{
@@ -90,10 +97,11 @@ void TitleStage::draw()
 		}
 		break;
 
+
 	case 2:
 		if (title->x >= 5)
 		{
-			title->x -= 5;
+			title->moveLeft();
 		}
 		else
 		{
@@ -109,7 +117,7 @@ void TitleStage::draw()
 	default:
 		if (ship->y <= 20) 
 		{
-			ship->y += 1;
+			ship->moveDown();
 		}
 		else
 		{
