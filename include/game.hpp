@@ -9,8 +9,9 @@
 #include "levels.hpp"
 #include "settings.hpp"
 #include "player.hpp"
+#include "breakables.hpp"
 
-#define CASTLE_TEXTURE_COUNT 59
+#define CASTLE_TEXTURE_COUNT 60
 #define CASTLE_TEXTURE_PATH "castle/"
 #define CASTLE_FNAME_PREFIX "c"
 

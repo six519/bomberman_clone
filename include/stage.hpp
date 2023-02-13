@@ -4,6 +4,7 @@
 #include "player.hpp"
 #include <iostream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -63,7 +64,7 @@ class GameStage: public Stage {
 		void slideUporDown();
 		void slideLeftorRight();
 	public:
-		GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title, Music bg, int px, int py);
+		GameStage(Game *gm, int width, int height, vector<vector <string>> level, map<string,string> breakable, string title, Music bg, int px, int py);
 		void cleanUp();
 };
 

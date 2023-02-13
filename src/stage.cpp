@@ -149,7 +149,7 @@ void TitleStage::cleanUp()
 	UnloadMusicStream(titleMusic);
 }
 
-GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> level, string title, Music bg, int px, int py) : Stage(gm, width, height)
+GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> level, map<string,string> breakable, string title, Music bg, int px, int py) : Stage(gm, width, height)
 {
 	int currentX = 0;
 	int currentY = 16;
@@ -177,6 +177,17 @@ GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> le
 			if (find(notSolidList.begin(), notSolidList.end(), it2) != notSolidList.end())
 			{
 				thisSprite.solid = false;
+			}
+
+			if (breakable.count(to_string(currentX) + "," + to_string(currentY)) > 0)
+			{
+				Texture2D frontTexture = game->textures[breakable[to_string(currentX) + "," + to_string(currentY)]];
+				Sprite frontSprite(frontTexture.width / frontTexture.height);
+				frontSprite.setTexture(frontTexture);
+				frontSprite.x = currentX;
+				frontSprite.y = currentY;
+				frontSprite.backSprite = &thisSprite;
+				thisSprite = frontSprite;
 			}
 
 			tiles.push_back(thisSprite);

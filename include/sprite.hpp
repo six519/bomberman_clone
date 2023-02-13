@@ -24,6 +24,8 @@ class Sprite
 		int moveAmount;
 		void move(int m);
 	public:
+		Sprite *lootSprite;
+		Sprite *backSprite;
 		int x;
 		int y;
 		Sprite(string imagePath);

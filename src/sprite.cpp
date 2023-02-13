@@ -14,6 +14,8 @@ Sprite::Sprite(string imagePath)
 	solid = true;
 	moveSpeed = 1;
 	moveAmount = 1;
+	lootSprite = NULL;
+	backSprite = NULL;
 }
 
 Sprite::Sprite()
@@ -28,6 +30,8 @@ Sprite::Sprite()
 	solid = true;
 	moveSpeed = 1;
 	moveAmount = 1;
+	lootSprite = NULL;
+	backSprite = NULL;
 }
 
 Sprite::Sprite(string imagePath, int tileCount)
@@ -44,6 +48,8 @@ Sprite::Sprite(string imagePath, int tileCount)
 	solid = true;
 	moveSpeed = 1;
 	moveAmount = 1;
+	lootSprite = NULL;
+	backSprite = NULL;
 }
 
 Sprite::Sprite(int tileCount)
@@ -58,6 +64,8 @@ Sprite::Sprite(int tileCount)
 	solid = true;
 	moveSpeed = 1;
 	moveAmount = 1;
+	lootSprite = NULL;
+	backSprite = NULL;
 }
 
 void Sprite::unload()
