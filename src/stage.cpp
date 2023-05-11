@@ -179,6 +179,8 @@ GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> le
 				thisSprite.solid = false;
 			}
 
+			tiles.push_back(thisSprite);
+
 			if (breakable.count(to_string(currentX) + "," + to_string(currentY)) > 0)
 			{
 				Texture2D frontTexture = game->textures[breakable[to_string(currentX) + "," + to_string(currentY)]];
@@ -186,11 +188,11 @@ GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> le
 				frontSprite.setTexture(frontTexture);
 				frontSprite.x = currentX;
 				frontSprite.y = currentY;
-				frontSprite.backSprite = &thisSprite;
-				thisSprite = frontSprite;
+				//frontSprite.backSprite = &thisSprite;
+				//thisSprite = frontSprite;
+				tiles.push_back(frontSprite);
 			}
 
-			tiles.push_back(thisSprite);
 			currentX += 16;
 		}
 
