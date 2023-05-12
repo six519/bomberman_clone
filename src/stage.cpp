@@ -513,8 +513,7 @@ void GameStage::draw()
 					checkFloorStart = false;
 					game->player->bombSnapX = it.x;
 					game->player->bombSnapY = it.y;
-					//set game->player->lastOverlapRatio by
-					//game->player->getOverlapRatio(it);
+					game->player->lastOverlapRatio = game->player->getOverlapRatio(it);
 
 					continue;
 				}

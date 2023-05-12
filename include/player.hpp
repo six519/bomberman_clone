@@ -2,6 +2,7 @@
 #define _PLAYER_H_
 #include "sprite.hpp"
 #include <string>
+#include <algorithm> 
 #include <raylib.h>
 
 #define PLAYER_DOWN 0
@@ -43,6 +44,7 @@ class Player
 		int bombSnapY;
 		float lastOverlapRatio;
 		vector<Sprite> collidedFloors;
+		float getOverlapRatio(Sprite s);
 };
 
 #endif

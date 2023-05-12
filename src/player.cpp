@@ -94,3 +94,20 @@ bool Player::isCollided(Sprite s)
 
 	return true;
 }
+
+float Player::getOverlapRatio(Sprite s)
+{
+	int xa1 = this->x;
+	int xa2 = xa1 + 16;
+	int ya1 = this->y + 16;
+	int ya2 = ya1 + 16;
+
+	int xb1 = s.x;
+	int xb2 = xb1 + 16;
+	int yb1 = s.y;
+	int yb2 = yb1 + 16;
+
+	int si = max(0, min(xa2, xb2) - max(xa1, xb1)) * max(0, min(ya2, yb2) - max(ya1, yb1));
+	int su = 512 - si;
+	return ((float)si / (float)su) * (float)100;
+}
