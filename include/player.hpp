@@ -39,6 +39,10 @@ class Player
 		int collidedCount;
 		int lastCollidedX;
 		int lastCollidedY;
+		int bombSnapX;
+		int bombSnapY;
+		int lastOverlapRatio;
+		vector<Sprite> collidedFloors;
 };
 
 #endif

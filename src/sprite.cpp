@@ -12,6 +12,7 @@ Sprite::Sprite(string imagePath)
 	tileCount = 0;
 	stopped = false;
 	solid = true;
+	is_floor = false;
 	moveSpeed = 1;
 	moveAmount = 1;
 	lootSprite = NULL;
@@ -28,6 +29,7 @@ Sprite::Sprite()
 	tileCount = 0;
 	stopped = false;
 	solid = true;
+	is_floor = false;
 	moveSpeed = 1;
 	moveAmount = 1;
 	lootSprite = NULL;
@@ -46,6 +48,7 @@ Sprite::Sprite(string imagePath, int tileCount)
 	frameRec = (Rectangle){ 0.0, 0.0, (float)texture.width/tileCount, (float)texture.height };
 	stopped = false;
 	solid = true;
+	is_floor = false;
 	moveSpeed = 1;
 	moveAmount = 1;
 	lootSprite = NULL;
@@ -62,6 +65,7 @@ Sprite::Sprite(int tileCount)
 	this->tileCount = tileCount;
 	stopped = false;
 	solid = true;
+	is_floor = false;
 	moveSpeed = 1;
 	moveAmount = 1;
 	lootSprite = NULL;

@@ -9,6 +9,9 @@ Player::Player()
 	collidedCount = 0;
 	lastCollidedX = 0;
 	lastCollidedY = 0;
+	bombSnapX = 0;
+	bombSnapY = 0;
+	lastOverlapRatio = 0;
 
 	up = new Sprite("assets/u.png", 4);
 	down = new Sprite("assets/d.png", 4);
@@ -76,8 +79,8 @@ void Player::play()
 bool Player::isCollided(Sprite s)
 {
 
-	if (!s.solid)
-		return false;
+	//if (!s.solid)
+	//	return false;
 
 	int lowerX1 = this->x + 16 - 1;
 	int lowerY1 = (this->y + 16) + 16 - 1; //bottom part of player

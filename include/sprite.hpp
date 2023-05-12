@@ -39,6 +39,7 @@ class Sprite
 		void play();
 		void playIndex(int ind);
 		bool solid;
+		bool is_floor;
 		void moveUp();
 		void moveDown();
 		void moveLeft();

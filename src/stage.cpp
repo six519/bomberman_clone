@@ -179,6 +179,11 @@ GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> le
 				thisSprite.solid = false;
 			}
 
+			if (find(floorList.begin(), floorList.end(), it2) != floorList.end())
+			{
+				thisSprite.is_floor = true;
+			}
+
 			tiles.push_back(thisSprite);
 
 			if (breakable.count(to_string(currentX) + "," + to_string(currentY)) > 0)
@@ -444,6 +449,7 @@ void GameStage::draw()
 
 	bool collided = false;
 	int collidedCount = 0;
+	bool checkFloorStart = true;
 
 	BeginDrawing();
 	BeginTextureMode(renderTexture);
@@ -475,17 +481,47 @@ void GameStage::draw()
 	case 2:
 		UpdateMusicStream(currentBg);
 
+		game->player->collidedFloors.clear();
 		for (auto& it : tiles)
 		{
 			it.play();
 
 			if (game->player->isCollided(it))
 			{
-				collided = true;
-				collidedCount += 1;
-				game->player->lastCollidedX = it.x;
-				game->player->lastCollidedY = it.y;
-				game->player->lastMovement = game->player->currentMovement;
+				if (it.solid)
+				{
+					collided = true;
+					collidedCount += 1;
+					game->player->lastCollidedX = it.x;
+					game->player->lastCollidedY = it.y;
+					game->player->lastMovement = game->player->currentMovement;
+				}
+				if(it.is_floor)
+				{
+					game->player->collidedFloors.push_back(it);
+				}
+			}
+		}
+
+		//check where to snap the bomb
+		if (game->player->collidedFloors.size() > 0)
+		{
+			for (auto& it : game->player->collidedFloors)
+			{
+				if (checkFloorStart)
+				{
+					checkFloorStart = false;
+					game->player->bombSnapX = it.x;
+					game->player->bombSnapY = it.y;
+					//set game->player->lastOverlapRatio by
+					//game->player->getOverlapRatio(it);
+
+					continue;
+				}
+
+				//compare lastOverlapRatio to other overlap ratio
+				// if greater than last then overwrite bomb snap x/y
+
 			}
 		}
 
