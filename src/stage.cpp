@@ -514,13 +514,18 @@ void GameStage::draw()
 					game->player->bombSnapX = it.x;
 					game->player->bombSnapY = it.y;
 					game->player->lastOverlapRatio = game->player->getOverlapRatio(it);
-
 					continue;
 				}
 
 				//compare lastOverlapRatio to other overlap ratio
 				// if greater than last then overwrite bomb snap x/y
-
+				float thisRatio = game->player->getOverlapRatio(it);
+				if (thisRatio > game->player->lastOverlapRatio)
+				{
+					game->player->bombSnapX = it.x;
+					game->player->bombSnapY = it.y;
+					game->player->lastOverlapRatio = thisRatio;
+				}
 			}
 		}
 
