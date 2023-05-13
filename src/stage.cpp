@@ -453,6 +453,7 @@ void GameStage::handleKeys()
 					thisSprite.setTexture(thisTexture);
 					thisSprite.x = game->player->bombSnapX;
 					thisSprite.y = game->player->bombSnapY;
+					thisSprite.solid = false;
 					bombs.push_back(thisSprite);
 				}
 			}
@@ -513,9 +514,7 @@ void GameStage::draw()
 				{
 					collided = true;
 					collidedCount += 1;
-					game->player->lastCollidedX = it.x;
-					game->player->lastCollidedY = it.y;
-					game->player->lastMovement = game->player->currentMovement;
+					game->player->setLastCollided(it);
 				}
 				if(it.is_floor)
 				{
@@ -528,6 +527,19 @@ void GameStage::draw()
 		for (auto& bmb : bombs)
 		{
 			bmb.play();
+
+			if (!game->player->isCollided(bmb) && !bmb.solid)
+			{
+				bmb.solid = true;
+			}
+
+			if (game->player->isCollided(bmb) && bmb.solid)
+			{
+				collided = true;
+				collidedCount += 1;
+				game->player->setLastCollided(bmb);
+			}
+
 		}
 
 		//check where to snap the bomb

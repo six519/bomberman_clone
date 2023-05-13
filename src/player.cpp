@@ -97,6 +97,13 @@ bool Player::isCollided(Sprite s)
 	return true;
 }
 
+void Player::setLastCollided(Sprite s)
+{
+	lastCollidedX = s.x;
+	lastCollidedY = s.y;
+	lastMovement = currentMovement;
+}
+
 float Player::getOverlapRatio(Sprite s)
 {
 	int xa1 = this->x;

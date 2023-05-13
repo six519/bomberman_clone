@@ -37,6 +37,7 @@ class Player
 		void unload();
 		void play();
 		bool isCollided(Sprite s);
+		void setLastCollided(Sprite s);
 		int framesCounter;
 		int collidedCount;
 		int lastCollidedX;
