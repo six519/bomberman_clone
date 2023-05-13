@@ -440,6 +440,27 @@ void GameStage::handleKeys()
 			}
 
 		}
+		else if (IsKeyDown(KEY_SPACE))
+		{
+			if (game->player->canSpawnBomb)
+			{
+				game->player->canSpawnBomb = false;
+				if (bombs.size() < game->player->bombCount)
+				{
+					//spawn bomb
+					Texture2D thisTexture = game->textures["bomb"];
+					Sprite thisSprite(thisTexture.width / thisTexture.height);
+					thisSprite.setTexture(thisTexture);
+					thisSprite.x = game->player->bombSnapX;
+					thisSprite.y = game->player->bombSnapY;
+					bombs.push_back(thisSprite);
+				}
+			}
+		}
+		else if (IsKeyReleased(KEY_SPACE))
+		{
+			game->player->canSpawnBomb = true;
+		}
 
 	}
 }
@@ -501,6 +522,12 @@ void GameStage::draw()
 					game->player->collidedFloors.push_back(it);
 				}
 			}
+		}
+
+		//draw bomb
+		for (auto& bmb : bombs)
+		{
+			bmb.play();
 		}
 
 		//check where to snap the bomb

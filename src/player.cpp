@@ -11,6 +11,8 @@ Player::Player()
 	lastCollidedY = 0;
 	bombSnapX = 0;
 	bombSnapY = 0;
+	bombCount = 1;
+	canSpawnBomb = true;
 	lastOverlapRatio = 0;
 
 	up = new Sprite("assets/u.png", 4);

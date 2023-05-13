@@ -73,6 +73,7 @@ void Game::loadTextures(int count, string path, string prefix)
 
 	//manual load
 	textures["hud"] = LoadTexture("assets/hud.png");
+	textures["bomb"] = LoadTexture("assets/bomb.png");
 }
 
 void Game::unloadTextures()

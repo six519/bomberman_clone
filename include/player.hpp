@@ -32,6 +32,7 @@ class Player
 		int currentMovement;
 		int lastMovement;
 		bool collided;
+		bool canSpawnBomb;
 		Player();
 		void unload();
 		void play();
@@ -42,6 +43,7 @@ class Player
 		int lastCollidedY;
 		int bombSnapX;
 		int bombSnapY;
+		int bombCount;
 		float lastOverlapRatio;
 		vector<Sprite> collidedFloors;
 		float getOverlapRatio(Sprite s);
