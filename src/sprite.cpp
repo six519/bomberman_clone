@@ -114,7 +114,10 @@ void Sprite::play()
 				currentFrame++;
 
 				if (currentFrame > (tileCount - 1))
+				{
 					currentFrame = 0;
+					this->onLastFrame();
+				}
 
 				frameRec.x = (float)currentFrame*(float)texture.width/tileCount;
 			}
@@ -179,4 +182,11 @@ void Sprite::moveRight()
 void Sprite::setMoveSpeed(int speed)
 {
 	moveSpeed = speed;
+}
+
+void Sprite::onLastFrame(){}
+
+void BombSprite::onLastFrame()
+{
+
 }

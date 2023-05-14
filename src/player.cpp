@@ -78,7 +78,7 @@ void Player::play()
 	}
 }
 
-bool Player::isCollided(Sprite s)
+bool Player::isCollided(Sprite& s)
 {
 
 	//if (!s.solid)
@@ -97,7 +97,7 @@ bool Player::isCollided(Sprite s)
 	return true;
 }
 
-bool Player::isCollidedWithNotSolidBombs(vector<Sprite> bombs)
+bool Player::isCollidedWithNotSolidBombs(vector<BombSprite> bombs)
 {
 	for(auto& bmb : bombs)
 	{
@@ -110,7 +110,7 @@ bool Player::isCollidedWithNotSolidBombs(vector<Sprite> bombs)
 	return false;
 }
 
-void Player::setLastCollided(Sprite s)
+void Player::setLastCollided(Sprite& s)
 {
 	lastCollidedX = s.x;
 	lastCollidedY = s.y;

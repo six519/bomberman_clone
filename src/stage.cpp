@@ -449,7 +449,7 @@ void GameStage::handleKeys()
 				{
 					//spawn bomb
 					Texture2D thisTexture = game->textures["bomb"];
-					Sprite thisSprite(thisTexture.width / thisTexture.height);
+					BombSprite thisSprite(thisTexture.width / thisTexture.height);
 					thisSprite.setTexture(thisTexture);
 					thisSprite.x = game->player->bombSnapX;
 					thisSprite.y = game->player->bombSnapY;

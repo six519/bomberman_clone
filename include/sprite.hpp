@@ -12,7 +12,7 @@ using namespace std;
 
 class Sprite
 {
-	private:
+	protected:
 		Texture2D texture;
 		int currentFrame;
 		int framesCounter;
@@ -46,6 +46,13 @@ class Sprite
 		void moveRight();
 		void setMoveSpeed(int speed);
 		void setMoveAmount(int a);
+		virtual void onLastFrame();
+};
+
+class BombSprite: public Sprite {
+	using Sprite::Sprite;
+	public:
+		void onLastFrame() override;
 };
 
 #endif

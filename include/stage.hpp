@@ -54,7 +54,7 @@ class GameStage: public Stage {
 		void draw();
 		void init();
 		vector<Sprite> tiles;
-		vector<Sprite> bombs;
+		vector<BombSprite> bombs;
 		Sprite *hud;
 		string title;
 		int txtX;
