@@ -29,6 +29,8 @@ class Game
 		void cleanUp();
 		void loadTextures(int count, string path, string prefix);
 		void unloadTextures();
+		void loadSound(string path, string name);
+		void unloadSounds();
 	public:
 		int screenWidth;
 		int screenHeight;
@@ -38,6 +40,7 @@ class Game
 		Music stageStart;
 		Music bgm1;
 		map<string, Texture2D> textures;
+		map<string, Sound> sounds;
 		Player *player;
 		Game(string t, int sw, int sh, int gw, int gh, int fps);
 		void run();

@@ -17,6 +17,9 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 	//load castle textures
 	loadTextures(CASTLE_TEXTURE_COUNT, CASTLE_TEXTURE_PATH, CASTLE_FNAME_PREFIX);
 
+	//load sounds below
+	loadSound("assets/sound_effects/place.wav", "place");
+
 	stageStart = LoadMusicStream("assets/stage_start.mp3");
 	bgm1 = LoadMusicStream("assets/bgm1.mp3");
 
@@ -32,6 +35,7 @@ void Game::cleanUp()
 	UnloadMusicStream(stageStart);
 	UnloadMusicStream(bgm1);
 	unloadTextures();
+	unloadSounds();
 	CloseAudioDevice();
 }
 
@@ -76,10 +80,23 @@ void Game::loadTextures(int count, string path, string prefix)
 	textures["bomb"] = LoadTexture("assets/bomb.png");
 }
 
+void Game::loadSound(string path, string name)
+{
+	sounds[name] = LoadSound(path.c_str());
+}
+
 void Game::unloadTextures()
 {
 	for (auto const& t : textures)
 	{
 		UnloadTexture(t.second);
+	}
+}
+
+void Game::unloadSounds()
+{
+	for (auto const& s : sounds)
+	{
+		UnloadSound(s.second);
 	}
 }

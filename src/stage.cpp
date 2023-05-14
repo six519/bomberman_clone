@@ -455,6 +455,7 @@ void GameStage::handleKeys()
 					thisSprite.y = game->player->bombSnapY;
 					thisSprite.solid = false;
 					bombs.push_back(thisSprite);
+					PlaySound(game->sounds["place"]);
 				}
 			}
 		}
