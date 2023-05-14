@@ -97,6 +97,19 @@ bool Player::isCollided(Sprite s)
 	return true;
 }
 
+bool Player::isCollidedWithNotSolidBombs(vector<Sprite> bombs)
+{
+	for(auto& bmb : bombs)
+	{
+		if (this->bombSnapX == bmb.x && this->bombSnapY == bmb.y && !bmb.solid)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void Player::setLastCollided(Sprite s)
 {
 	lastCollidedX = s.x;

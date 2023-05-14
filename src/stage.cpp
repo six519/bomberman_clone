@@ -445,7 +445,7 @@ void GameStage::handleKeys()
 			if (game->player->canSpawnBomb)
 			{
 				game->player->canSpawnBomb = false;
-				if (bombs.size() < game->player->bombCount)
+				if (bombs.size() < game->player->bombCount && !game->player->isCollidedWithNotSolidBombs(bombs))
 				{
 					//spawn bomb
 					Texture2D thisTexture = game->textures["bomb"];

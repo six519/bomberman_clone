@@ -37,6 +37,7 @@ class Player
 		void unload();
 		void play();
 		bool isCollided(Sprite s);
+		bool isCollidedWithNotSolidBombs(vector<Sprite> bombs);
 		void setLastCollided(Sprite s);
 		int framesCounter;
 		int collidedCount;
