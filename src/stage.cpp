@@ -541,6 +541,11 @@ void GameStage::draw()
 				game->player->setLastCollided(bmb);
 			}
 
+			if (bmb.tickCount == 3)
+			{
+				//explode bomb
+			}
+
 		}
 
 		//check where to snap the bomb

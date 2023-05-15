@@ -49,9 +49,12 @@ class Sprite
 		virtual void onLastFrame();
 };
 
-class BombSprite: public Sprite {
+class BombSprite: public Sprite 
+{
 	using Sprite::Sprite;
 	public:
+		int tickCount;
+		BombSprite();
 		void onLastFrame() override;
 };
 

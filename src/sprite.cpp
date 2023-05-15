@@ -186,7 +186,15 @@ void Sprite::setMoveSpeed(int speed)
 
 void Sprite::onLastFrame(){}
 
+BombSprite::BombSprite() : Sprite()
+{
+	tickCount = 0;
+}
+
 void BombSprite::onLastFrame()
 {
-
+	if (tickCount < 3)
+	{
+		tickCount += 1;
+	}
 }
