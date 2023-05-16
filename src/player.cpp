@@ -12,6 +12,8 @@ Player::Player()
 	bombSnapX = 0;
 	bombSnapY = 0;
 	bombCount = 1;
+	lives = 3;
+	explosionCount = 1;
 	canSpawnBomb = true;
 	lastOverlapRatio = 0;
 
