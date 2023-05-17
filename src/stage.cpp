@@ -578,6 +578,11 @@ void GameStage::draw()
 		game->player->collidedCount = collidedCount;
 
 		hud->draw();
+
+		//draw hud texts
+		DrawTextEx(GetFontDefault(), to_string(game->player->lives).c_str(), (Vector2){ 185, 8 }, 10, 1.5, WHITE);
+		DrawTextEx(GetFontDefault(), to_string(game->player->bombCount).c_str(), (Vector2){ 218, 8 }, 10, 1.5, WHITE);
+		DrawTextEx(GetFontDefault(), to_string(game->player->explosionCount).c_str(), (Vector2){ 243, 8 }, 10, 1.5, WHITE);		
 		game->player->play();
 
 		break;
