@@ -269,6 +269,7 @@ void GameStage::handleKeys()
 {
 	if (state == 2)
 	{
+		// for movement
 		if (IsKeyDown(KEY_UP))
 		{
 			game->player->currentMovement = PLAYER_WALK_UP;
@@ -440,7 +441,9 @@ void GameStage::handleKeys()
 			}
 
 		}
-		else if (IsKeyDown(KEY_SPACE))
+		
+		// for bomb
+		if (IsKeyDown(KEY_SPACE))
 		{
 			if (game->player->canSpawnBomb)
 			{
