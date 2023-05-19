@@ -156,6 +156,9 @@ GameStage::GameStage(Game *gm, int width, int height, vector<vector <string>> le
 	this->title = title;
 	showCounter = 0;
 	currentBg = bg;
+	timeSeconds = 0;
+	timeMinutes = 4;
+	framesCounter = 0;
 
 	txtVec = MeasureTextEx(GetFontDefault(), this->title.c_str(), 40, 1.5);
 	txtX = game->gameWidth;
@@ -583,10 +586,14 @@ void GameStage::draw()
 		hud->draw();
 
 		//draw hud texts
+		DrawTextEx(GetFontDefault(), getFormattedTime().c_str(), (Vector2){ 122, 8 }, 10, 1.5, WHITE);
 		DrawTextEx(GetFontDefault(), to_string(game->player->lives).c_str(), (Vector2){ 185, 8 }, 10, 1.5, WHITE);
-		DrawTextEx(GetFontDefault(), to_string(game->player->bombCount).c_str(), (Vector2){ 218, 8 }, 10, 1.5, WHITE);
-		DrawTextEx(GetFontDefault(), to_string(game->player->explosionCount).c_str(), (Vector2){ 243, 8 }, 10, 1.5, WHITE);		
+		DrawTextEx(GetFontDefault(), to_string(game->player->bombCount).c_str(), (Vector2){ 217.5, 8 }, 10, 1.5, WHITE);
+		DrawTextEx(GetFontDefault(), to_string(game->player->explosionCount).c_str(), (Vector2){ 241.5, 8 }, 10, 1.5, WHITE);		
 		game->player->play();
+
+		//run timer
+		timeTick();
 
 		break;
 	
@@ -623,4 +630,40 @@ void GameStage::init()
 void GameStage::cleanUp()
 {
 
+}
+
+void GameStage::timeTick()
+{
+	framesCounter++;
+
+	if (framesCounter >= ((TARGET_FPS * 5) / FRAME_SPEED))
+	{
+		framesCounter = 0;
+
+		if (timeMinutes > 0 || timeSeconds > 0)
+		{
+			if (timeSeconds == 0)
+			{
+				timeSeconds = 59;
+				timeMinutes -= 1;
+			}
+			else
+			{
+				timeSeconds -= 1;
+			}
+		}
+	}
+}
+
+string GameStage::getFormattedTime()
+{
+
+	string secStr = to_string(timeSeconds);
+
+	if (secStr.length() == 1)
+	{
+		secStr = "0" + secStr;
+	}
+
+	return to_string(timeMinutes) + " : " + secStr;
 }

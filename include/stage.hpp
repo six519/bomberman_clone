@@ -65,8 +65,13 @@ class GameStage: public Stage {
 		void slideUporDown();
 		void slideLeftorRight();
 	public:
+		int timeSeconds;
+		int timeMinutes;
+		int framesCounter;
 		GameStage(Game *gm, int width, int height, vector<vector <string>> level, map<string,string> breakable, string title, Music bg, int px, int py);
 		void cleanUp();
+		void timeTick();
+		string getFormattedTime();
 };
 
 /*
