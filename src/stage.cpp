@@ -586,7 +586,8 @@ void GameStage::draw()
 		hud->draw();
 
 		//draw hud texts
-		DrawTextEx(GetFontDefault(), getFormattedTime().c_str(), (Vector2){ 122, 8 }, 10, 1.5, WHITE);
+		DrawTextEx(GetFontDefault(), to_string(game->player->score).c_str(), (Vector2){ 30, 8 }, 10, 3, WHITE);
+		DrawTextEx(GetFontDefault(), getFormattedTime().c_str(), (Vector2){ 121, 8 }, 10, 5, WHITE);
 		DrawTextEx(GetFontDefault(), to_string(game->player->lives).c_str(), (Vector2){ 185, 8 }, 10, 1.5, WHITE);
 		DrawTextEx(GetFontDefault(), to_string(game->player->bombCount).c_str(), (Vector2){ 217.5, 8 }, 10, 1.5, WHITE);
 		DrawTextEx(GetFontDefault(), to_string(game->player->explosionCount).c_str(), (Vector2){ 241.5, 8 }, 10, 1.5, WHITE);		
@@ -665,5 +666,5 @@ string GameStage::getFormattedTime()
 		secStr = "0" + secStr;
 	}
 
-	return to_string(timeMinutes) + " : " + secStr;
+	return to_string(timeMinutes) + ":" + secStr;
 }

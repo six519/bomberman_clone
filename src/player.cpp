@@ -16,6 +16,7 @@ Player::Player()
 	explosionCount = 1;
 	canSpawnBomb = true;
 	lastOverlapRatio = 0;
+	score = 0;
 
 	up = new Sprite("assets/u.png", 4);
 	down = new Sprite("assets/d.png", 4);

@@ -47,6 +47,7 @@ class Player
 		int bombSnapY;
 		int bombCount;
 		int lives;
+		int score;
 		int explosionCount;
 		float lastOverlapRatio;
 		vector<Sprite> collidedFloors;
