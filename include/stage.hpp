@@ -72,7 +72,7 @@ class GameStage: public Stage {
 		void cleanUp();
 		void timeTick();
 		string getFormattedTime();
-		string getFormattedScore(int score);
+		string getFormattedScore(string str_score);
 };
 
 /*
