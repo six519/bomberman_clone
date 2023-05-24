@@ -19,6 +19,7 @@ Game::Game(string t, int sw, int sh, int gw, int gh, int fps)
 
 	//load sounds below
 	loadSound("assets/sound_effects/place.wav", "place");
+	loadSound("assets/sound_effects/explosion.wav", "explosion");
 
 	stageStart = LoadMusicStream("assets/stage_start.mp3");
 	bgm1 = LoadMusicStream("assets/bgm1.mp3");
