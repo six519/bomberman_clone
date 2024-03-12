@@ -547,7 +547,7 @@ void GameStage::draw()
 				game->player->setLastCollided(bmb);
 			}
 
-			if (bmb.tickCount == 3)
+			if (bmb.tickCount == BOMB_TICK_COUNT)
 			{
 				//explode bomb
 			}
@@ -648,11 +648,9 @@ void GameStage::timeTick()
 			{
 				timeSeconds = 59;
 				timeMinutes -= 1;
+				return;
 			}
-			else
-			{
-				timeSeconds -= 1;
-			}
+			timeSeconds -= 1;
 		}
 	}
 }

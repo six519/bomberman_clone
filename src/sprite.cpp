@@ -193,7 +193,7 @@ BombSprite::BombSprite() : Sprite()
 
 void BombSprite::onLastFrame()
 {
-	if (tickCount < 3)
+	if (tickCount < BOMB_TICK_COUNT)
 	{
 		tickCount += 1;
 	}

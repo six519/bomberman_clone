@@ -7,6 +7,7 @@
 #define SPRITE_MOVE_DOWN 1
 #define SPRITE_MOVE_LEFT 2
 #define SPRITE_MOVE_RIGHT 3
+#define BOMB_TICK_COUNT 3
 
 using namespace std;
 

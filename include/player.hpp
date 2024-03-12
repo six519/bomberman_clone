@@ -2,7 +2,8 @@
 #define _PLAYER_H_
 #include "sprite.hpp"
 #include <string>
-#include <algorithm> 
+#include <algorithm>
+#include <vector> 
 #include <raylib.h>
 
 #define PLAYER_DOWN 0
